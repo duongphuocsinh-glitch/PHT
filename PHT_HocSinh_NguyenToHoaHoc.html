@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<base target="_top">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phiếu học tập – Nguyên tố hóa học</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Lexend:wght@600;700;800&family=JetBrains+Mono:wght@600;700&display=swap">
+<style>
+:root{
+  --bg:#EEF2F7;--paper:#FFFFFF;--paper2:#F7F9FC;--ink:#15213B;--muted:#5A6785;--line:#D9E1EC;
+  --navy:#13203D;--navy2:#1C2E55;--onnavy:#F3F6FB;--onnavy2:#AFC0DD;
+  --c1:#0B8A80;--c1s:#E3F4F2;--c2:#2F53C9;--c2s:#E7ECFB;--c3:#C27A0E;--c3s:#FBF1DF;--c4:#C8433A;--c4s:#FBE8E6;--c5:#2A8F4E;--c5s:#E4F4EA;
+  --ok:#1F8A4C;--oks:#E2F5EA;--bad:#C63A32;--bads:#FCE7E5;--warn:#B7791F;
+  --shadow:0 1px 2px rgba(19,32,61,.06),0 6px 18px rgba(19,32,61,.06);
+  --fd:'Lexend','Be Vietnam Pro',system-ui,sans-serif;--fb:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--fm:'JetBrains Mono',ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root{color-scheme:dark;
+  --bg:#0D1424;--paper:#151F35;--paper2:#1A2640;--ink:#E6ECF7;--muted:#9AA8C4;--line:#2A3858;--navy:#0A1122;--navy2:#16244A;
+  --c1:#37C2B4;--c1s:#12302F;--c2:#7F9BFF;--c2s:#1B2650;--c3:#F0B04A;--c3s:#3A2B12;--c4:#FF7F73;--c4s:#3D1D1D;--c5:#5BCB85;--c5s:#15321F;
+  --ok:#5BCB85;--oks:#15321F;--bad:#FF7F73;--bads:#3D1D1D;--warn:#F0B04A;--shadow:none}}
+[hidden]{display:none!important}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--fb);font-size:16px;line-height:1.6;padding:12px 12px 110px}
+.wrap{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+h1,h2,h3{font-family:var(--fd);line-height:1.25;margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:3px solid var(--c2);outline-offset:2px}
+.nu{display:inline-flex;align-items:center;white-space:nowrap;font-weight:600}
+.nu .az{display:inline-flex;flex-direction:column;align-items:flex-end;font-size:.62em;line-height:1.05;margin-right:1px;font-family:var(--fm)}
+.nu .az span:empty::before{content:"\00a0"}
+
+/* hero */
+.hero{background:var(--navy);color:var(--onnavy);border-radius:18px;padding:18px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--navy2) 1px,transparent 1px),linear-gradient(90deg,var(--navy2) 1px,transparent 1px);background-size:30px 30px;opacity:.55;pointer-events:none}
+.hero>*{position:relative}
+.hrow{display:flex;gap:14px;align-items:center}
+.tile{flex:none;width:66px;height:76px;border:2px solid #37C2B4;border-radius:10px;background:rgba(55,194,180,.12);display:flex;flex-direction:column;justify-content:space-between;padding:4px 7px}
+.tile .z{font-family:var(--fm);font-size:11px;color:var(--onnavy2)}.tile .s{font-family:var(--fd);font-size:28px;font-weight:800;line-height:1;text-align:center;color:#4FD6C6}.tile .m{font-family:var(--fm);font-size:9px;text-align:center;color:var(--onnavy2)}
+.eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--onnavy2);font-weight:600}
+.hero h1{font-size:clamp(20px,5.4vw,30px);font-weight:800;margin-top:2px}
+.hero h1 em{font-style:normal;color:#F5B94A}
+.who-line{margin-top:12px;font-size:14px;color:var(--onnavy2)}
+.who-line b{color:var(--onnavy)}
+
+/* start card */
+.start{background:var(--paper);border-radius:18px;padding:20px;box-shadow:var(--shadow);border:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
+.start h2{font-size:19px}
+.fld{display:flex;flex-direction:column;gap:4px;font-weight:600;font-size:14px}
+.fld input{font-size:17px;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--paper2)}
+.fld input:focus{border-color:var(--c1);outline:none}
+.start ul{margin:0;padding-left:18px;color:var(--muted);font-size:14px}
+.btn{border:0;border-radius:14px;padding:13px 20px;font-weight:700;font-size:16px;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn.pri{background:var(--c1);color:#fff}
+.btn.sec{background:var(--paper);border:1.5px solid var(--line);color:var(--ink)}
+.btn.dk{background:var(--navy);color:var(--onnavy)}
+.btn:disabled{opacity:.55}
+.err{color:var(--bad);font-weight:600;font-size:14px}
+.note{border-radius:12px;padding:12px 14px;font-size:14.5px}
+.note.warn{background:var(--c3s);color:var(--ink)}
+
+/* chips nav */
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none;position:sticky;top:0;z-index:5;background:var(--bg);padding-block:8px}
+.chips::-webkit-scrollbar{display:none}
+.chips a{flex:none;text-decoration:none;font-size:13px;font-weight:700;padding:6px 12px;border-radius:99px;background:var(--paper);border:1.5px solid var(--line);color:var(--muted)}
+.chips a b{color:var(--cc)}
+
+/* sections */
+.sec{background:var(--paper);border-radius:16px;border:1px solid var(--line);box-shadow:var(--shadow);overflow:hidden;scroll-margin-top:56px}
+.sec-h{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--cs);border-bottom:1px solid var(--line)}
+.sec-h .n{font-family:var(--fd);font-weight:800;color:#fff;background:var(--cc);border-radius:10px;min-width:34px;height:34px;display:grid;place-items:center}
+.sec-h h2{font-size:16px}.sec-h .d{font-size:12.5px;color:var(--muted)}
+.sec-h .pt{margin-left:auto;font-size:12px;font-weight:700;color:var(--cc);border:1.5px solid var(--cc);border-radius:99px;padding:1px 9px;white-space:nowrap}
+.sec-b{padding:14px;display:flex;flex-direction:column;gap:14px}
+.s1{--cc:var(--c1);--cs:var(--c1s)}.s2{--cc:var(--c2);--cs:var(--c2s)}.s3{--cc:var(--c3);--cs:var(--c3s)}.s4{--cc:var(--c4);--cs:var(--c4s)}.s5{--cc:var(--c5);--cs:var(--c5s)}
+
+.topic{border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--paper2)}
+.topic h3{font-size:15px;color:var(--cc);margin-bottom:6px}
+.topic p{margin:6px 0;line-height:2.2}
+.topic .ex{font-size:14px;color:var(--muted);border-left:3px solid var(--cc);padding-left:10px;margin-top:6px;line-height:1.7}
+select.bl{appearance:none;-webkit-appearance:none;border:0;border-bottom:2px dashed var(--cc);background:var(--paper) linear-gradient(45deg,transparent 50%,var(--cc) 50%) no-repeat right 8px center/7px 7px;border-radius:6px 6px 0 0;padding:2px 24px 2px 8px;font-weight:700;color:var(--cc);max-width:100%;min-width:6.5em;font-size:16px}
+select.bl.ok{border-bottom:2px solid var(--ok);color:var(--ok);background-color:var(--oks)}
+select.bl.bad{border-bottom:2px solid var(--bad);color:var(--bad);background-color:var(--bads)}
+.fix{display:inline-block;font-size:12.5px;font-weight:700;color:var(--ok);background:var(--oks);border-radius:6px;padding:0 6px;margin-left:4px;line-height:1.8}
+.fix.x{color:var(--bad);background:var(--bads)}
+.sym{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.symbig{font-size:50px;line-height:1}.symbig .az{font-size:.42em}
+
+.grid2{display:grid;grid-template-columns:1fr;gap:12px}
+@media (min-width:720px){.grid2{grid-template-columns:1fr 1fr}}
+.q{border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px;background:var(--paper)}
+.q.ok{border-color:var(--ok);box-shadow:inset 4px 0 0 var(--ok)}.q.bad{border-color:var(--bad);box-shadow:inset 4px 0 0 var(--bad)}
+.qt{font-weight:600}.qt .tag{font-family:var(--fd);color:var(--cc);font-weight:700}
+.src{font-size:11px;font-weight:700;color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:0 5px;margin-left:4px}
+.opts{display:grid;gap:8px}
+.opt{display:flex;gap:10px;align-items:flex-start;border:1.5px solid var(--line);border-radius:12px;padding:11px 12px;cursor:pointer;min-height:48px}
+.opt input{margin-top:4px;width:20px;height:20px;flex:none;accent-color:var(--cc)}
+.opt .L{font-family:var(--fd);font-weight:700;color:var(--cc);min-width:18px}
+.opt:has(input:checked){background:var(--cs);border-color:var(--cc)}
+.opt.right{background:var(--oks)!important;border-color:var(--ok)!important}.opt.wrong{background:var(--bads)!important;border-color:var(--bad)!important}
+.fb{font-size:14px;border-radius:10px;padding:9px 12px;background:var(--paper2);border:1px dashed var(--line)}
+.fb .r{font-weight:700}.q.ok .fb .r{color:var(--ok)}.q.bad .fb .r{color:var(--bad)}
+.num{width:96px;border:1.5px solid var(--line);border-radius:10px;padding:8px;background:var(--paper2);font-family:var(--fm);font-weight:700;text-align:center;font-size:16px}
+.num:focus{border-color:var(--cc);outline:none}
+.num.ok{border-color:var(--ok);background:var(--oks)}.num.bad{border-color:var(--bad);background:var(--bads)}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.hint{font-size:13px;color:var(--muted)}
+.atoms{display:flex;flex-wrap:wrap;gap:6px}.atoms span{border:1px solid var(--line);background:var(--paper2);border-radius:8px;padding:2px 9px;font-size:14px}
+.builders{display:grid;grid-template-columns:1fr;gap:10px}
+@media (min-width:640px){.builders{grid-template-columns:repeat(3,1fr)}}
+.bld{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--paper2);display:flex;align-items:center;justify-content:space-between;gap:10px}
+.bld .cap{font-size:14px;color:var(--muted)}.bld .cap b{color:var(--ink)}
+.bld .s{display:flex;align-items:center;gap:6px}.bld .st{display:flex;flex-direction:column;gap:4px}.bld .st input{width:60px;padding:4px}
+.bld .E{font-family:var(--fd);font-size:36px;font-weight:700;line-height:1}
+.bld.ok{border-color:var(--ok);background:var(--oks)}.bld.bad{border-color:var(--bad);background:var(--bads)}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table.t{width:100%;border-collapse:collapse;font-size:15px}
+table.t th{background:var(--cs);font-size:13px;padding:8px 6px;border-bottom:1px solid var(--line)}
+table.t td{padding:6px;border-bottom:1px solid var(--line);text-align:center}
+table.t tr:last-child td{border-bottom:0}
+table.t td .num{width:62px;padding:6px 2px}
+table.t tr.ok td:first-child{box-shadow:inset 4px 0 0 var(--ok)}table.t tr.bad td:first-child{box-shadow:inset 4px 0 0 var(--bad)}
+.chart svg{width:100%;max-width:320px;height:auto}.chart text{fill:var(--muted);font-family:var(--fm);font-size:11px}.chart .b{fill:var(--c2)}.chart .ax{stroke:var(--line)}.chart .lb{fill:var(--ink);font-weight:700}
+
+/* TF as cards (mobile friendly) */
+.tf{display:flex;flex-direction:column;gap:10px}
+.tfi{border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+.tfi .st{font-weight:500}
+.tfb{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tfb label{display:flex;align-items:center;justify-content:center;gap:8px;border:1.5px solid var(--line);border-radius:10px;padding:8px;font-weight:700;cursor:pointer;min-height:44px}
+.tfb input{width:18px;height:18px;accent-color:var(--cc)}
+.tfb label:has(input:checked){background:var(--cs);border-color:var(--cc);color:var(--cc)}
+.tfi.ok{border-color:var(--ok);background:var(--oks)}.tfi.bad{border-color:var(--bad);background:var(--bads)}
+
+/* match */
+.mb{display:grid;gap:6px;background:var(--paper2);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:14.5px}
+.mb div{display:flex;gap:8px}.mb b{color:var(--c3);font-family:var(--fd);min-width:26px}
+.mi{display:flex;align-items:center;gap:10px;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px}
+.mi .k{font-family:var(--fd);font-weight:800;color:var(--cc);min-width:26px}.mi .tx{flex:1;font-weight:600}
+.mi select{border:1.5px dashed var(--cc);border-radius:10px;padding:8px 10px;background:var(--paper);font-weight:700;color:var(--cc);font-size:16px}
+.mi.ok{border-color:var(--ok);background:var(--oks)}.mi.bad{border-color:var(--bad);background:var(--bads)}
+
+/* bottom bar */
+.bbar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--paper);border-top:1px solid var(--line);padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));box-shadow:0 -6px 18px rgba(19,32,61,.08)}
+.bbar .in{max-width:900px;margin:0 auto;display:flex;gap:12px;align-items:center}
+.pg{flex:1;display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted)}
+.pg .tr{height:8px;background:var(--line);border-radius:99px;overflow:hidden}.pg .fl{height:100%;width:0;background:linear-gradient(90deg,var(--c1),var(--c2));transition:width .3s}
+.pg b{font-family:var(--fm);color:var(--ink)}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:40;background:rgba(10,17,34,.55);display:flex;align-items:flex-end;justify-content:center;padding:12px}
+.sheet{background:var(--paper);border-radius:18px;padding:20px;max-width:460px;width:100%;display:flex;flex-direction:column;gap:12px;margin-bottom:env(safe-area-inset-bottom,0px)}
+.sheet h3{font-size:18px}
+.sheet .row .btn{flex:1}
+.spin{width:44px;height:44px;border-radius:50%;border:4px solid var(--line);border-top-color:var(--c1);animation:sp 0.9s linear infinite;align-self:center}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+/* result */
+.result{background:var(--paper);border:2px solid var(--c1);border-radius:18px;overflow:hidden;scroll-margin-top:10px}
+.rt{display:flex;gap:16px;align-items:center;padding:16px;background:var(--c1s);flex-wrap:wrap}
+.ring{width:110px;height:110px;position:relative;flex:none}.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring .v{position:absolute;inset:0;display:grid;place-items:center;text-align:center}.ring .v b{font-family:var(--fd);font-size:30px;line-height:1;display:block}.ring .v small{font-size:11px;color:var(--muted)}
+.rk{display:inline-block;font-weight:800;font-family:var(--fd);border-radius:99px;padding:2px 12px;font-size:14px;color:#fff}
+.rt h2{font-size:18px;margin-top:6px}.rt .i{color:var(--muted);font-size:14px}
+.sbs{display:grid;gap:10px;padding:14px 16px}
+.sb{display:grid;grid-template-columns:1fr auto;gap:4px 10px;font-size:14px}
+.sb .tr{grid-column:1/-1;height:9px;background:var(--line);border-radius:99px;overflow:hidden}.sb .tr i{display:block;height:100%}
+.sb .v{font-family:var(--fm);font-weight:700}
+.sent{margin:0 16px 16px;background:var(--oks);color:var(--ok);font-weight:700;border-radius:12px;padding:10px 12px;font-size:14px}
+.recap{background:linear-gradient(135deg,var(--navy),var(--navy2));color:var(--onnavy);border-radius:16px;padding:16px 18px}
+.recap h3{font-size:15px;color:#F5B94A;margin-bottom:6px}.recap ul{margin:0;padding-left:18px;font-size:14.5px}
+.codebox{margin:0 16px 16px;background:var(--c3s);border:2px solid var(--c3);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.codebox .ct{font-weight:800;font-family:var(--fd)}.codebox ol{margin:0;padding-left:20px;font-size:14.5px}
+.codebox textarea{width:100%;height:70px;font-family:var(--fm);font-size:11px;border:1px solid var(--line);border-radius:10px;padding:8px;background:var(--paper);word-break:break-all;resize:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="note warn" id="nojs" style="font-weight:600">⚠️ Nếu em không bấm được gì: hãy mở file này bằng <b>Chrome</b> (Android: bấm ⋮ → <b>Mở bằng ứng dụng khác</b> → Chrome). Không mở trong Zalo.</div>
+  <header class="hero">
+    <div class="hrow">
+      <div class="tile" aria-hidden="true"><span class="z">6</span><span class="s">C</span><span class="m">12,011</span></div>
+      <div><div class="eyebrow">Hóa học 10 · Bài 2 · Phiếu học tập</div><h1>Nguyên tố hóa học — <em>Đồng vị</em> — Nguyên tử khối</h1></div>
+    </div>
+    <div class="who-line" id="whoLine" hidden></div>
+  </header>
+
+  <!-- START -->
+  <section class="start" id="start">
+    <h2>Thông tin học sinh</h2>
+    <label class="fld" for="ten">Họ và tên<input id="ten" autocomplete="name" placeholder="VD: Nguyễn Văn An" maxlength="60"></label>
+    <label class="fld" for="lop">Lớp<input id="lop" placeholder="VD: 10A1" maxlength="20" autocapitalize="characters"></label>
+    <ul>
+      <li>Phiếu có 5 khu vực, 50 ý nhỏ, tổng 10 điểm.</li>
+      <li>Bài làm được lưu tạm trên máy; lỡ thoát ra mở lại file vẫn còn.</li>
+      <li>Làm xong bấm <b>Nộp bài</b> ở cuối màn hình, rồi <b>sao chép mã kết quả</b> gửi thầy/cô qua Zalo.</li>
+    </ul>
+    <div class="err" id="startErr"></div>
+    <button class="btn pri" id="go">Bắt đầu làm bài →</button>
+  </section>
+  <div class="note warn" id="closed" hidden>Thầy/cô đã <b>đóng nhận bài</b>. Em có thể xem phiếu nhưng không nộp được.</div>
+
+  <div id="work" hidden class="wrap">
+    <section class="result" id="result" hidden aria-live="polite"></section>
+
+    <nav class="chips" aria-label="Chuyển nhanh">
+      <a href="#k1" class="s1"><b>1</b> Lí thuyết</a><a href="#k2" class="s2"><b>2</b> Bài tập</a><a href="#k3" class="s3"><b>3</b> Trắc nghiệm</a><a href="#k4" class="s4"><b>4</b> Đúng/Sai</a><a href="#k5" class="s5"><b>5</b> Nối cột</a>
+    </nav>
+
+    <!-- K1 -->
+    <section class="sec s1" id="k1">
+      <div class="sec-h"><span class="n">1</span><div><h2>Kiến thức trọng tâm</h2><div class="d">Chạm vào ô gạch để chọn đáp án</div></div><span class="pt">2 điểm</span></div>
+      <div class="sec-b">
+        <div class="topic"><h3>I. Nguyên tố hóa học</h3>
+          <p>• Nguyên tố hóa học là tập hợp các <span data-b="b1"></span> có cùng <span data-b="b2"></span>.</p>
+          <p>• Trong nguyên tử: số đơn vị điện tích hạt nhân (Z) = số <span data-b="b3"></span> = số <span data-b="b4"></span>.</p>
+          <p>• Các nguyên tử của cùng một nguyên tố có <span data-b="b5"></span> giống nhau.</p>
+          <p>• Hiện nay người ta đã biết <span data-b="b6"></span> nguyên tố hóa học, gồm các nguyên tố tồn tại trong tự nhiên và các nguyên tố tạo ra trong phòng thí nghiệm.</p>
+          <div class="ex">Ví dụ: Tất cả các nguyên tử có cùng số đơn vị điện tích hạt nhân là 6 đều thuộc nguyên tố carbon dù có thể có số neutron khác nhau.</div>
+        </div>
+        <div class="topic"><h3>II. Kí hiệu nguyên tử</h3>
+          <div class="sym"><span class="nu symbig"><span class="az"><span>A</span><span>Z</span></span>X</span>
+            <div><p style="margin:0">• <b>A</b> là <span data-b="b8"></span></p><p style="margin:0">• <b>Z</b> là <span data-b="b9"></span></p><p style="margin:0">• <b>X</b> là <span data-b="b10"></span></p></div></div>
+          <div class="ex">Ví dụ: <span data-nu="23,11,Na"></span>: Z = 11 (11 proton, 11 electron), A = 23 → số neutron = 23 − 11 = 12.</div>
+        </div>
+        <div class="topic"><h3>III. Đồng vị</h3>
+          <p>• Đồng vị là những nguyên tử có cùng số <span data-b="b11"></span> nhưng khác nhau về số <span data-b="b12"></span>, do đó số khối A khác nhau.</p>
+          <p>• Các đồng vị của cùng một nguyên tố có tính chất hóa học <span data-b="b13"></span>, tính chất vật lí khác nhau.</p>
+          <div class="ex">Ví dụ: hydrogen có 3 đồng vị <span data-nu="1,1,H"></span>, <span data-nu="2,1,H"></span>, <span data-nu="3,1,H"></span>.</div>
+        </div>
+        <div class="topic"><h3>IV. Nguyên tử khối</h3>
+          <p>1. Nguyên tử khối là khối lượng tương đối của nguyên tử, đơn vị là <span data-b="b14"></span>. Vì khối lượng electron rất nhỏ nên nguyên tử khối ≈ <span data-b="b15"></span>.</p>
+          <p>2. Nguyên tố có các đồng vị A₁ (a%), A₂ (b%): Ā = <span data-b="b16"></span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- K2 -->
+    <section class="sec s2" id="k2">
+      <div class="sec-h"><span class="n">2</span><div><h2>Bài tập vận dụng</h2><div class="d">Bài tập 1 – 7</div></div><span class="pt">3 điểm</span></div>
+      <div class="sec-b">
+        <div class="q" data-q="bt1"><div class="qt"><span class="tag">Bài 1.</span> Những nguyên tử nào thuộc cùng một nguyên tố hóa học?</div>
+          <div class="atoms"><span>L (Z = 8, A = 16)</span><span>D (Z = 9, A = 19)</span><span>E (Z = 8, A = 18)</span><span>G (Z = 7, A = 15)</span></div>
+          <div class="opts" data-opts="bt1"></div><div class="fb" data-fb="bt1" hidden></div></div>
+
+        <div class="q" data-q="bt2"><div class="qt"><span class="tag">Bài 2.</span> Kí hiệu nguyên tử <span data-nu="A,Z,X"></span> cho biết những thông tin gì? <span class="hint">(chọn tất cả ý đúng)</span></div>
+          <div class="opts" data-opts="bt2"></div><div class="fb" data-fb="bt2" hidden></div></div>
+
+        <div class="q" data-q="bt3"><div class="qt"><span class="tag">Bài 3.</span> Viết kí hiệu nguyên tử: ô trên là số khối A, ô dưới là số hiệu Z.</div>
+          <div class="builders" id="bt3box"></div><div class="fb" data-fb="bt3" hidden></div></div>
+
+        <div class="q" data-q="bt4"><div class="qt"><span class="tag">Bài 4.</span> Xác định số proton (p), neutron (n), electron (e) của mỗi đồng vị.</div>
+          <div class="tw"><table class="t" id="bt4tbl"><thead><tr><th>Đồng vị</th><th>p</th><th>n</th><th>e</th></tr></thead><tbody></tbody></table></div>
+          <div class="fb" data-fb="bt4" hidden></div></div>
+
+        <div class="q" data-q="bt5"><div class="qt"><span class="tag">Bài 5.</span> Tỉ lệ % số nguyên tử các đồng vị của neon (Ne) theo phổ khối lượng (Hình 2.4). Tính nguyên tử khối trung bình của Ne.</div>
+          <div class="chart"><svg viewBox="0 0 300 172" role="img" aria-label="Phổ khối lượng neon: Ne-20 90,9%, Ne-21 0,3%, Ne-22 8,8%">
+            <line class="ax" x1="40" y1="140" x2="290" y2="140" stroke-width="1.5"/><line class="ax" x1="40" y1="20" x2="40" y2="140" stroke-width="1.5"/>
+            <line class="ax" x1="40" y1="80" x2="290" y2="80" stroke-dasharray="3 4"/>
+            <text x="34" y="144" text-anchor="end">0</text><text x="34" y="84" text-anchor="end">50</text><text x="34" y="24" text-anchor="end">100</text>
+            <rect class="b" x="75" y="30.9" width="34" height="109.1" rx="3"/><rect class="b" x="148" y="139.4" width="34" height="0.6"/><rect class="b" x="221" y="129.4" width="34" height="10.6" rx="3"/>
+            <text class="lb" x="92" y="25" text-anchor="middle">90,9%</text><text class="lb" x="165" y="132" text-anchor="middle">0,3%</text><text class="lb" x="238" y="123" text-anchor="middle">8,8%</text>
+            <text x="92" y="157" text-anchor="middle">²⁰Ne</text><text x="165" y="157" text-anchor="middle">²¹Ne</text><text x="238" y="157" text-anchor="middle">²²Ne</text><text x="165" y="171" text-anchor="middle">m/z</text></svg></div>
+          <div class="row"><label for="bt5">Ā(Ne) =</label><input class="num" id="bt5" inputmode="decimal" placeholder="?"><span class="hint">làm tròn 2 chữ số thập phân</span></div>
+          <div class="fb" data-fb="bt5" hidden></div></div>
+
+        <div class="q" data-q="bt6"><div class="qt"><span class="tag">Bài 6.</span> Vì sao trong bảng tuần hoàn, nguyên tử khối của chromium (Cr) không phải số nguyên mà là 51,996?</div>
+          <div class="opts" data-opts="bt6"></div><div class="fb" data-fb="bt6" hidden></div></div>
+
+        <div class="q" data-q="bt7"><div class="qt"><span class="tag">Bài 7.</span> Nguyên tử khối trung bình của copper là 63,546. Copper có hai đồng vị <span data-nu="63,29,Cu"></span> và <span data-nu="65,29,Cu"></span>. Tính % số nguyên tử của <span data-nu="63,29,Cu"></span>.</div>
+          <div class="row"><label for="bt7">%<sup>63</sup>Cu =</label><input class="num" id="bt7" inputmode="decimal" placeholder="?"><span>%</span></div>
+          <div class="hint">Gợi ý: đặt x là % <sup>63</sup>Cu → 63x + 65(100 − x) = 63,546 × 100. Làm tròn 1 chữ số thập phân.</div>
+          <div class="fb" data-fb="bt7" hidden></div></div>
+      </div>
+    </section>
+
+    <!-- K3 -->
+    <section class="sec s3" id="k3">
+      <div class="sec-h"><span class="n">3</span><div><h2>Trắc nghiệm nhiều lựa chọn</h2><div class="d">9 câu – chọn 1 đáp án</div></div><span class="pt">3 điểm</span></div>
+      <div class="sec-b"><div class="grid2" id="mcq"></div></div>
+    </section>
+
+    <!-- K4 -->
+    <section class="sec s4" id="k4">
+      <div class="sec-h"><span class="n">4</span><div><h2>Đúng / Sai</h2><div class="d">Chọn Đúng hoặc Sai cho mỗi phát biểu</div></div><span class="pt">1 điểm</span></div>
+      <div class="sec-b"><div class="tf" id="tf"></div></div>
+    </section>
+
+    <!-- K5 -->
+    <section class="sec s5" id="k5">
+      <div class="sec-h"><span class="n">5</span><div><h2>Nối cột</h2><div class="d">Chọn ý ở cột B phù hợp với mỗi khái niệm ở cột A</div></div><span class="pt">1 điểm</span></div>
+      <div class="sec-b"><div class="mb" id="colB"></div><div class="opts" id="colA"></div></div>
+    </section>
+
+    <section class="recap"><h3>Ghi nhớ nhanh</h3><ul>
+      <li>Nguyên tố hóa học: các nguyên tử có cùng Z.</li><li>Z = số proton = số electron.</li><li>Số khối A = Z + N.</li>
+      <li>Đồng vị: cùng Z, khác N → khác A.</li><li>Ā = (a·A₁ + b·A₂ + …) / 100</li></ul></section>
+  </div>
+</div>
+
+<div class="bbar" id="bbar" hidden><div class="in">
+  <div class="pg"><span>Đã làm <b id="pt">0/50</b></span><div class="tr"><div class="fl" id="pf"></div></div></div>
+  <button class="btn pri" id="submit">Nộp bài</button>
+</div></div>
+
+<div class="modal" id="modal" hidden><div class="sheet" id="sheet"></div></div>
+
+<script>
+/* ===== Chế độ file độc lập: chấm điểm ngay trên máy ===== */
+/**
+ * PHIẾU HỌC TẬP TƯƠNG TÁC – HÓA HỌC 10 – BÀI 2: NGUYÊN TỐ HÓA HỌC
+ * Web app Google Apps Script: học sinh làm trên điện thoại, bài được chấm
+ * tại máy chủ và tự ghi vào Google Sheet này.
+ *
+ * Sheet được tạo tự động: KetQua (bảng điểm), ChiTiet (đúng/sai từng ý),
+ * ThongKe (thống kê lớp), CaiDat (mở/đóng nhận bài, hiện đáp án...).
+ */
+
+var SH_RESULT = 'KetQua', SH_DETAIL = 'ChiTiet', SH_STAT = 'ThongKe', SH_CFG = 'CaiDat';
+
+/* ======================= ĐÁP ÁN & THANG ĐIỂM ======================= */
+var SECS = [
+  ['k1', 'Kiến thức trọng tâm', 2],
+  ['k2', 'Bài tập vận dụng', 3],
+  ['k3', 'Trắc nghiệm', 3],
+  ['k4', 'Đúng / Sai', 1],
+  ['k5', 'Nối cột', 1]
+];
+
+// Điền khuyết: đáp án phải trùng đúng chữ với lựa chọn trong Index.html
+var BL_KEY = {
+  b1: 'nguyên tử', b2: 'số đơn vị điện tích hạt nhân', b3: 'proton', b4: 'electron',
+  b5: 'tính chất hóa học', b6: '118', b8: 'số khối', b9: 'số hiệu nguyên tử',
+  b10: 'kí hiệu nguyên tố', b11: 'proton', b12: 'neutron', b13: 'giống nhau',
+  b14: 'amu', b15: 'số khối', b16: '(a·A₁ + b·A₂) / 100'
+};
+var BL_LABEL = {
+  b1: 'Nguyên tố hóa học là tập hợp các …', b2: '… có cùng …', b3: 'Z = số …', b4: 'Z = số proton = số …',
+  b5: 'Nguyên tử cùng nguyên tố có … giống nhau', b6: 'Số nguyên tố hóa học đã biết',
+  b8: 'Trong kí hiệu, A là', b9: 'Trong kí hiệu, Z là', b10: 'Trong kí hiệu, X là',
+  b11: 'Đồng vị: cùng số …', b12: 'Đồng vị: khác số …', b13: 'Tính chất hóa học của các đồng vị',
+  b14: 'Đơn vị nguyên tử khối', b15: 'Nguyên tử khối ≈ …', b16: 'Công thức Ā'
+};
+var BT3 = { a: [14, 7, 'N'], b: [31, 15, 'P'], c: [63, 29, 'Cu'] };
+var BT4 = [['Si', 28, 14], ['Si', 29, 14], ['Si', 30, 14], ['Fe', 54, 26], ['Fe', 56, 26], ['Fe', 57, 26], ['Fe', 58, 26]];
+var BT2_KEY = '0,1,2,3';
+// Trắc nghiệm 9 câu (đã bỏ câu "kí hiệu viết đúng" của file gốc)
+var MCQ_KEY = [2, 0, 2, 1, 3, 3, 3, 0, 1];
+var MCQ_EX = [
+  'Số đơn vị điện tích hạt nhân = số proton = số electron, không nhất thiết bằng số neutron.',
+  'Z = số proton = số đơn vị điện tích hạt nhân.',
+  'Đồng vị phải cùng Z: dãy C cùng Z = 14.',
+  'Số proton = 82, số neutron = 206 − 82 = 124; tổng p + n = 206.',
+  'Z, Q, L cùng Z = 8.',
+  'Chọn N: 2 cách. Cặp 2 nguyên tử O: 3 cặp giống nhau + 3 cặp khác nhau = 6 → 2 × 6 = 12.',
+  'Ā = (79 × 50,69 + 81 × 49,31) / 100 = 79,986.',
+  'Ā = (16 × 99,757 + 17 × 0,038 + 18 × 0,205) / 100 ≈ 16,004 ≈ 16,0.',
+  '79 × 0,545 + A₂ × 0,455 = 79,91 → A₂ = 81.'
+];
+var TF_KEY = ['S', 'Đ', 'Đ', 'S', 'Đ', 'S'];
+var TF_EX = ['Đồng vị cùng số proton, khác số neutron.', 'A = Z + N.', 'Cùng Z = 6, khác số khối.',
+  'Ā thường là số thập phân (VD: Cl = 35,45).', 'Cùng số electron nên tính chất hóa học giống nhau.',
+  'Số neutron = 35 − 17 = 18.'];
+var M_KEY = ['B3', 'B1', 'B5', 'B4', 'B2'];
+var M_LABEL = ['Số hiệu nguyên tử Z', 'Số khối A', 'Đồng vị', 'Nguyên tử khối trung bình', 'Nguyên tố hóa học'];
+
+var ITEMS = (function () {
+  var L = [];
+  Object.keys(BL_KEY).forEach(function (k) { L.push({ id: k, sec: 'k1', pts: 2 / 15, label: 'Điền khuyết: ' + BL_LABEL[k] }); });
+  L.push({ id: 'bt1', sec: 'k2', pts: 0.4, label: 'Bài tập 1 – nguyên tử cùng nguyên tố' });
+  L.push({ id: 'bt2', sec: 'k2', pts: 0.4, label: 'Bài tập 2 – thông tin từ kí hiệu nguyên tử' });
+  ['a', 'b', 'c'].forEach(function (x) { L.push({ id: 'bt3' + x, sec: 'k2', pts: 0.2, label: 'Bài tập 3' + x + ' – kí hiệu ' + BT3[x][2] }); });
+  BT4.forEach(function (r, i) { L.push({ id: 'bt4_' + i, sec: 'k2', pts: 0.1, label: 'Bài tập 4 – thành phần ' + r[1] + r[0] }); });
+  L.push({ id: 'bt5', sec: 'k2', pts: 0.3, label: 'Bài tập 5 – Ā của Ne' });
+  L.push({ id: 'bt6', sec: 'k2', pts: 0.3, label: 'Bài tập 6 – vì sao Ā(Cr) không nguyên' });
+  L.push({ id: 'bt7', sec: 'k2', pts: 0.3, label: 'Bài tập 7 – % đồng vị 63Cu' });
+  MCQ_KEY.forEach(function (_, i) { L.push({ id: 'q' + (i + 1), sec: 'k3', pts: 3 / MCQ_KEY.length, label: 'Trắc nghiệm câu ' + (i + 1) }); });
+  TF_KEY.forEach(function (_, i) { L.push({ id: 'tf' + (i + 1), sec: 'k4', pts: 1 / 6, label: 'Đúng/Sai ý ' + (i + 1) }); });
+  M_KEY.forEach(function (_, i) { L.push({ id: 'm' + (i + 1), sec: 'k5', pts: 0.2, label: 'Nối cột A' + (i + 1) + ' – ' + M_LABEL[i] }); });
+  return L;
+})();
+
+function num_(v) { if (v === null || v === undefined) return NaN; v = String(v).trim().replace(/\s/g, '').replace(',', '.'); return v === '' ? NaN : Number(v); }
+function str_(v) { return v === null || v === undefined ? '' : String(v); }
+
+function check_(id, v) {
+  if (BL_KEY[id] !== undefined) return str_(v) === BL_KEY[id];
+  if (id === 'bt1' || id === 'bt6') return str_(v) === '1';
+  if (id === 'bt2') return str_(v) === BT2_KEY;
+  if (id.indexOf('bt3') === 0) { var k = BT3[id.charAt(3)]; v = v || []; return num_(v[0]) === k[0] && num_(v[1]) === k[1]; }
+  if (id.indexOf('bt4_') === 0) { var r = BT4[+id.slice(4)]; v = v || []; return num_(v[0]) === r[2] && num_(v[1]) === r[1] - r[2] && num_(v[2]) === r[2]; }
+  if (id === 'bt5') { var x = num_(v); return x >= 20.17 && x <= 20.19; }
+  if (id === 'bt7') { var y = num_(v); return y >= 72.6 && y <= 72.8; }
+  if (/^q\d+$/.test(id)) return str_(v) !== '' && +v === MCQ_KEY[+id.slice(1) - 1];
+  if (/^tf\d+$/.test(id)) return str_(v) === TF_KEY[+id.slice(2) - 1];
+  if (/^m\d+$/.test(id)) return str_(v) === M_KEY[+id.slice(1) - 1];
+  return false;
+}
+
+function grade_(a) {
+  a = a || {};
+  var per = {}; SECS.forEach(function (s) { per[s[0]] = 0; });
+  var bits = [], nOk = 0;
+  ITEMS.forEach(function (it) {
+    var ok = check_(it.id, a[it.id]);
+    bits.push(ok ? 1 : 0);
+    if (ok) { per[it.sec] += it.pts; nOk++; }
+  });
+  var total = 0; Object.keys(per).forEach(function (k) { per[k] = Math.round(per[k] * 100) / 100; total += per[k]; });
+  return { bits: bits, per: per, total: Math.round(total * 100) / 100, nOk: nOk };
+}
+function rank_(t) { return t >= 8 ? 'Tốt' : t >= 6.5 ? 'Khá' : t >= 5 ? 'Đạt' : 'Chưa đạt'; }
+
+function nu_(A, Z, X) { return '<sup>' + A + '</sup><sub>' + Z + '</sub>' + X; }
+function feedback_() {
+  var fb = {};
+  Object.keys(BL_KEY).forEach(function (k) { fb[k] = { k: BL_KEY[k] }; });
+  fb.bt1 = { k: 'B. L và E', x: 'L và E cùng Z = 8 (cùng là oxygen) nên thuộc cùng một nguyên tố; chúng là hai đồng vị (A = 16 và A = 18).' };
+  fb.bt2 = { k: 'A, B, C, D', x: 'Kí hiệu cho biết A, Z và kí hiệu nguyên tố X → suy ra số p = số e = Z, số n = A − Z. Không cho biết nguyên tử khối trung bình.' };
+  fb.bt3 = { x: 'Đáp án: ' + nu_(14, 7, 'N') + ', ' + nu_(31, 15, 'P') + ', ' + nu_(63, 29, 'Cu') + ' (A = số proton + số neutron).' };
+  ['a', 'b', 'c'].forEach(function (x) { var k = BT3[x]; fb['bt3' + x] = { k: 'A = ' + k[0] + ', Z = ' + k[1] }; });
+  fb.bt4 = { x: 'Số p = số e = Z; số n = A − Z. Si: n = 14, 15, 16. Fe: n = 28, 30, 31, 32.' };
+  BT4.forEach(function (r, i) { fb['bt4_' + i] = { k: 'p = ' + r[2] + ', n = ' + (r[1] - r[2]) + ', e = ' + r[2] }; });
+  fb.bt5 = { k: '20,18', x: 'Ā = (20 × 90,9 + 21 × 0,3 + 22 × 8,8) / 100 = 20,179 ≈ <b>20,18</b>.' };
+  fb.bt6 = { k: 'B', x: 'Cr tự nhiên gồm nhiều đồng vị (⁵⁰Cr, ⁵²Cr, ⁵³Cr, ⁵⁴Cr); nguyên tử khối ghi trong bảng tuần hoàn là nguyên tử khối trung bình theo tỉ lệ % số nguyên tử nên không nguyên.' };
+  fb.bt7 = { k: '72,7%', x: '63x + 65(100 − x) = 6354,6 → 2x = 145,4 → x = <b>72,7%</b>.' };
+  MCQ_KEY.forEach(function (a, i) { fb['q' + (i + 1)] = { k: 'ABCD'.charAt(a), x: MCQ_EX[i] }; });
+  TF_KEY.forEach(function (a, i) { fb['tf' + (i + 1)] = { k: a, x: TF_EX[i] }; });
+  M_KEY.forEach(function (a, i) { fb['m' + (i + 1)] = { k: a }; });
+  return fb;
+}
+function optKeys_() {
+  var o = { bt1: [1], bt6: [1], bt2: [0, 1, 2, 3] };
+  MCQ_KEY.forEach(function (a, i) { o['q' + (i + 1)] = [a]; });
+  return o;
+}
+
+
+function djb_(s){var x=5381;for(var i=0;i<s.length;i++){x=((x<<5)+x+s.charCodeAt(i))>>>0}return (x%1679616).toString(36);}
+function pad4_(t){while(t.length<4)t='0'+t;return t}
+function encode_(o){var s=JSON.stringify(o);var b=btoa(unescape(encodeURIComponent(s)));return 'NTHH2-'+b+'.'+pad4_(djb_(s+'nthh10'));}
+window.google={script:{run:(function(){var s,f;var o={withSuccessHandler:function(x){s=x;return o},withFailureHandler:function(x){f=x;return o},
+ getConfig:function(){var cb=s;setTimeout(function(){cb({open:true,showKey:true,multi:true,n:ITEMS.length})},0)},
+ submitResult:function(p){var cb=s,fb=f;setTimeout(function(){try{
+   var g=grade_(p.answers);var now=Date.now();
+   var code=encode_({v:1,n:String(p.name).trim(),l:String(p.cls).trim(),ts:now,d:p.dur||0,b:g.bits.join('')});
+   cb({ok:true,total:g.total,per:g.per,nOk:g.nOk,n:ITEMS.length,rank:rank_(g.total),attempt:1,time:now,bits:g.bits,fb:feedback_(),optKeys:optKeys_(),code:code});
+ }catch(e){fb&&fb(e)}},300)}};return o})()}};
+</script>
+<script>
+(function(){
+"use strict";
+try{document.getElementById('nojs').hidden=true}catch(e){}
+var $=function(s,r){return (r||document).querySelector(s)}, $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function nu(A,Z,X){return '<span class="nu"><span class="az"><span>'+(A==null?'':A)+'</span><span>'+(Z==null?'':Z)+'</span></span>'+X+'</span>'}
+function fmt(x){return (Math.round(x*100)/100).toLocaleString('vi-VN',{maximumFractionDigits:2})}
+var HAS_GAS=!!(window.google&&google.script&&google.script.run);
+
+/* ---- nội dung (không chứa đáp án; đáp án nằm ở máy chủ) ---- */
+var BL={b1:['nguyên tử','phân tử','ion','hạt nhân'],b2:['số đơn vị điện tích hạt nhân','số neutron','số khối','nguyên tử khối'],b3:['proton','neutron','khối'],b4:['electron','neutron','khối'],
+ b5:['tính chất hóa học','số neutron','số khối','khối lượng'],b6:['104','110','118','126'],
+ b8:['số khối','số hiệu nguyên tử','kí hiệu nguyên tố','nguyên tử khối'],b9:['số khối','số hiệu nguyên tử','kí hiệu nguyên tố','số neutron'],b10:['số khối','số hiệu nguyên tử','kí hiệu nguyên tố','tên nguyên tố'],
+ b11:['proton','neutron','electron lớp ngoài'],b12:['proton','neutron','electron'],b13:['giống nhau','khác nhau','hoàn toàn khác nhau'],b14:['amu','gam','kg','mol'],
+ b15:['số khối','số hiệu nguyên tử','số neutron','số electron'],b16:['(A₁ + A₂) / 2','(a·A₁ + b·A₂) / 100','a·A₁ + b·A₂','(a + b) / (A₁ + A₂)']};
+var BT1=['L và D','L và E','D và G','E và G'];
+var BT2=['Số khối A','Số hiệu nguyên tử Z (số proton = số electron)','Kí hiệu hóa học của nguyên tố','Số neutron (N = A − Z)','Nguyên tử khối trung bình của nguyên tố','Tính chất vật lí của nguyên tử'];
+var BT3=[['a','Nitrogen','7 proton, 7 neutron','N'],['b','Phosphorus','15 proton, 16 neutron','P'],['c','Copper','29 proton, 34 neutron','Cu']];
+var BT4=[['Si',28,14],['Si',29,14],['Si',30,14],['Fe',54,26],['Fe',56,26],['Fe',57,26],['Fe',58,26]];
+var BT6=['Vì nguyên tử Cr có khối lượng electron đáng kể.','Vì Cr là hỗn hợp nhiều đồng vị với tỉ lệ khác nhau; nguyên tử khối trong bảng tuần hoàn là nguyên tử khối trung bình.','Vì số proton của Cr không phải là số nguyên.','Vì phép đo khối lượng nguyên tử Cr có sai số.'];
+function L(a){return a.map(function(x){return nu.apply(null,x)}).join(', ')}
+var MCQ=[
+ ['Phát biểu nào sau đây <b>không</b> đúng?',['Số hiệu nguyên tử bằng số đơn vị điện tích hạt nhân nguyên tử.','Số khối của hạt nhân bằng tổng số proton và số neutron.','Trong nguyên tử, số đơn vị điện tích hạt nhân bằng số proton và bằng số neutron.','Nguyên tố hoá học là những nguyên tử có cùng số đơn vị điện tích hạt nhân.']],
+ ['Số hiệu nguyên tử cho biết thông tin nào sau đây?',['Số proton.','Số neutron.','Số khối.','Nguyên tử khối.']],
+ ['Dãy nào sau đây gồm các đồng vị của cùng một nguyên tố hoá học?',[L([[14,6,'X'],[14,7,'Y'],[14,8,'Z']]),L([[19,9,'X'],[19,10,'Y'],[20,10,'Z']]),L([[28,14,'X'],[29,14,'Y'],[30,14,'Z']]),L([[40,18,'X'],[40,19,'Y'],[40,20,'Z']])]],
+ ['Thông tin nào sau đây <b>không</b> đúng về '+nu(206,82,'Pb')+'?',['Số đơn vị điện tích hạt nhân là 82.','Số proton và neutron là 82.','Số neutron là 124.','Số khối là 206.']],
+ ['Cho các nguyên tử: '+L([[14,6,'X'],[14,7,'Y'],[16,8,'Z'],[19,9,'T'],[17,8,'Q'],[16,9,'M'],[19,10,'E'],[16,7,'G'],[18,8,'L']])+'. Dãy nào gồm các nguyên tử thuộc cùng một nguyên tố hoá học?',[L([[14,6,'X'],[14,7,'Y'],[16,8,'Z']]),L([[16,8,'Z'],[16,9,'M'],[16,7,'G']]),L([[17,8,'Q'],[16,9,'M'],[19,10,'E']]),L([[16,8,'Z'],[17,8,'Q'],[18,8,'L']])]],
+ ['Nitrogen có hai đồng vị bền '+L([[14,7,'N'],[15,7,'N']])+'. Oxygen có ba đồng vị bền '+L([[16,8,'O'],[17,8,'O'],[18,8,'O']])+'. Số hợp chất NO₂ tạo bởi các đồng vị trên là',['3','6','9','12']],
+ ['Bromine có hai đồng vị bền '+nu(79,35,'Br')+' chiếm 50,69% và '+nu(81,35,'Br')+' chiếm 49,31% số nguyên tử. Nguyên tử khối trung bình của bromine là',['80,00','80,112','80,986','79,986']],
+ ['Oxygen có ba đồng vị: '+nu(16,8,'O')+' (99,757%), '+nu(17,8,'O')+' (0,038%), '+nu(18,8,'O')+' (0,205%). Nguyên tử khối trung bình của oxygen là',['16,0','16,2','17,0','18,0']],
+ ['Nguyên tố R có hai đồng vị, nguyên tử khối trung bình là 79,91. Một đồng vị là '+nu(79,'','R')+' (chiếm 54,5%). Nguyên tử khối của đồng vị thứ hai là',['80','81','82','80,5']]
+];
+var TF=['Các đồng vị của cùng một nguyên tố có cùng số neutron.','Số khối A bằng tổng số proton và số neutron trong hạt nhân.',nu(12,6,'C')+' và '+nu(14,6,'C')+' là hai đồng vị của carbon.','Nguyên tử khối trung bình của một nguyên tố luôn là số nguyên.','Các đồng vị của cùng một nguyên tố có tính chất hóa học giống nhau.','Nguyên tử '+nu(35,17,'Cl')+' có 17 neutron.'];
+var MA=['Số hiệu nguyên tử Z','Số khối A','Đồng vị','Nguyên tử khối trung bình','Nguyên tố hóa học'];
+var MB=['Tổng số proton và số neutron trong hạt nhân','Tập hợp các nguyên tử có cùng số đơn vị điện tích hạt nhân','Bằng số proton và bằng số electron trong nguyên tử','Tính theo tỉ lệ % số nguyên tử của các đồng vị','Các nguyên tử cùng số proton, khác số neutron'];
+var SECS=[['k1','Kiến thức trọng tâm',2,'--c1'],['k2','Bài tập vận dụng',3,'--c2'],['k3','Trắc nghiệm',3,'--c3'],['k4','Đúng / Sai',1,'--c4'],['k5','Nối cột',1,'--c5']];
+var IDS=Object.keys(BL).concat(['bt1','bt2','bt3a','bt3b','bt3c']).concat(BT4.map(function(_,i){return 'bt4_'+i})).concat(['bt5','bt6','bt7'])
+  .concat(MCQ.map(function(_,i){return 'q'+(i+1)})).concat(TF.map(function(_,i){return 'tf'+(i+1)})).concat(MA.map(function(_,i){return 'm'+(i+1)}));
+
+/* ---- render ---- */
+function shuf(a,seed){a=a.slice();var s=seed;for(var i=a.length-1;i>0;i--){s=(s*9301+49297)%233280;var j=Math.floor(s/233280*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+$$('[data-nu]').forEach(function(el){var p=el.getAttribute('data-nu').split(',');el.outerHTML=nu(p[0],p[1],p[2])});
+$$('[data-b]').forEach(function(sp,i){var k=sp.getAttribute('data-b');var s=document.createElement('select');s.className='bl';s.id=k;s.setAttribute('aria-label','Chỗ trống '+k);
+  s.innerHTML='<option value="">— chọn —</option>'+shuf(BL[k],i*7+3).map(function(o){return '<option>'+esc(o)+'</option>'}).join('');sp.parentNode.replaceChild(s,sp)});
+function opts(host,name,list,type){host.innerHTML=list.map(function(o,i){return '<label class="opt"><input type="'+(type||'radio')+'" name="'+name+'" value="'+i+'"><span class="L">'+'ABCDEF'.charAt(i)+'.</span><span>'+o+'</span></label>'}).join('')}
+opts($('[data-opts="bt1"]'),'bt1',BT1);opts($('[data-opts="bt2"]'),'bt2',BT2,'checkbox');opts($('[data-opts="bt6"]'),'bt6',BT6);
+$('#bt3box').innerHTML=BT3.map(function(b){return '<div class="bld" data-item="bt3'+b[0]+'"><div class="cap">'+b[0]+') <b>'+b[1]+'</b><br>'+b[2]+'</div><div class="s"><div class="st"><input class="num" id="bt3'+b[0]+'A" inputmode="numeric" placeholder="A" aria-label="Số khối '+b[1]+'"><input class="num" id="bt3'+b[0]+'Z" inputmode="numeric" placeholder="Z" aria-label="Số hiệu '+b[1]+'"></div><span class="E">'+b[3]+'</span></div></div>'}).join('');
+$('#bt4tbl tbody').innerHTML=BT4.map(function(r,i){return '<tr data-item="bt4_'+i+'"><td>'+nu(r[1],r[2],r[0])+'</td>'+['p','n','e'].map(function(x){return '<td><input class="num" id="bt4_'+i+x+'" inputmode="numeric" aria-label="'+x+' '+r[1]+r[0]+'"></td>'}).join('')+'</tr>'}).join('');
+$('#mcq').innerHTML=MCQ.map(function(m,i){return '<div class="q" data-q="q'+(i+1)+'"><div class="qt"><span class="tag">Câu '+(i+1)+'.</span> '+m[0]+'<span class="src">KNTT-SBT</span></div><div class="opts">'+m[1].map(function(o,j){return '<label class="opt"><input type="radio" name="q'+(i+1)+'" value="'+j+'"><span class="L">'+'ABCD'.charAt(j)+'.</span><span>'+o+'</span></label>'}).join('')+'</div><div class="fb" data-fb="q'+(i+1)+'" hidden></div></div>'}).join('');
+$('#tf').innerHTML=TF.map(function(t,i){var n='tf'+(i+1);return '<div class="tfi" data-item="'+n+'"><div class="st"><b>'+(i+1)+'.</b> '+t+'</div><div class="tfb"><label><input type="radio" name="'+n+'" value="Đ">Đúng</label><label><input type="radio" name="'+n+'" value="S">Sai</label></div><div class="fbx"></div></div>'}).join('');
+$('#colB').innerHTML='<div style="font-weight:700;color:var(--c3)">CỘT B</div>'+MB.map(function(m,i){return '<div><b>B'+(i+1)+'</b><span>'+m+'</span></div>'}).join('');
+$('#colA').innerHTML=MA.map(function(m,i){return '<div class="mi" data-item="m'+(i+1)+'"><span class="k">A'+(i+1)+'</span><span class="tx">'+m+'</span><select id="m'+(i+1)+'" aria-label="Nối A'+(i+1)+'"><option value="">?</option>'+MB.map(function(_,j){return '<option>B'+(j+1)+'</option>'}).join('')+'</select></div>'}).join('');
+
+/* ---- đọc bài làm ---- */
+function radio(n){var r=$('input[name="'+n+'"]:checked');return r?r.value:''}
+function val(id){return $('#'+id).value.trim()}
+function answers(){
+  var a={};Object.keys(BL).forEach(function(k){a[k]=$('#'+k).value});
+  a.bt1=radio('bt1');a.bt6=radio('bt6');a.bt2=$$('input[name="bt2"]:checked').map(function(x){return x.value}).join(',');
+  BT3.forEach(function(b){a['bt3'+b[0]]=[val('bt3'+b[0]+'A'),val('bt3'+b[0]+'Z')]});
+  BT4.forEach(function(r,i){a['bt4_'+i]=['p','n','e'].map(function(x){return val('bt4_'+i+x)})});
+  a.bt5=val('bt5');a.bt7=val('bt7');
+  MCQ.forEach(function(_,i){a['q'+(i+1)]=radio('q'+(i+1))});TF.forEach(function(_,i){a['tf'+(i+1)]=radio('tf'+(i+1))});
+  MA.forEach(function(_,i){a['m'+(i+1)]=$('#m'+(i+1)).value});return a}
+function filled(v){return Array.isArray(v)?v.every(function(x){return x!==''}):v!==''}
+function countDone(){var a=answers();return IDS.filter(function(id){return filled(a[id])}).length}
+function progress(){var n=countDone();$('#pt').textContent=n+'/'+IDS.length;$('#pf').style.width=(n/IDS.length*100)+'%';return n}
+
+/* ---- lưu tạm ---- */
+var DK='pht-nthh-file-v1',t0=null,cfg={open:true,showKey:true};
+function save(){try{var a=answers();a._n=$('#ten').value;a._l=$('#lop').value;a._t0=t0;a._go=!$('#work').hidden;localStorage.setItem(DK,JSON.stringify(a))}catch(e){}}
+function load(){var a;try{a=JSON.parse(localStorage.getItem(DK)||'null')}catch(e){}if(!a)return null;
+  $('#ten').value=a._n||'';$('#lop').value=a._l||'';t0=a._t0||null;
+  Object.keys(BL).forEach(function(k){if(a[k])$('#'+k).value=a[k]});
+  function sr(n,v){if(v!==''&&v!=null){var r=$('input[name="'+n+'"][value="'+v+'"]');if(r)r.checked=true}}
+  sr('bt1',a.bt1);sr('bt6',a.bt6);(a.bt2||'').split(',').filter(Boolean).forEach(function(v){sr('bt2',v)});
+  BT3.forEach(function(b){var v=a['bt3'+b[0]]||[];$('#bt3'+b[0]+'A').value=v[0]||'';$('#bt3'+b[0]+'Z').value=v[1]||''});
+  BT4.forEach(function(r,i){(a['bt4_'+i]||[]).forEach(function(v,j){$('#bt4_'+i+'pne'.charAt(j)).value=v||''})});
+  $('#bt5').value=a.bt5||'';$('#bt7').value=a.bt7||'';
+  MCQ.forEach(function(_,i){sr('q'+(i+1),a['q'+(i+1)])});TF.forEach(function(_,i){sr('tf'+(i+1),a['tf'+(i+1)])});
+  MA.forEach(function(_,i){if(a['m'+(i+1)])$('#m'+(i+1)).value=a['m'+(i+1)]});return a}
+
+/* ---- bắt đầu ---- */
+function begin(){
+  var n=$('#ten').value.replace(/\s+/g,' ').trim(),l=$('#lop').value.replace(/\s+/g,' ').trim().toUpperCase();
+  if(n.split(' ').length<2){$('#startErr').textContent='Em nhập đầy đủ họ và tên (ít nhất 2 chữ).';$('#ten').focus();return}
+  if(!l){$('#startErr').textContent='Em nhập lớp.';$('#lop').focus();return}
+  $('#ten').value=n;$('#lop').value=l;
+  $('#start').hidden=true;$('#work').hidden=false;$('#bbar').hidden=!cfg.open;
+  $('#whoLine').hidden=false;$('#whoLine').innerHTML='Học sinh: <b>'+esc(n)+'</b> · Lớp <b>'+esc(l)+'</b>';
+  if(!t0)t0=Date.now();progress();save();window.scrollTo(0,0);
+}
+$('#go').addEventListener('click',begin);
+$('#lop').addEventListener('keydown',function(e){if(e.key==='Enter')begin()});
+$('#work').addEventListener('change',function(){progress();save()});
+$('#work').addEventListener('input',function(){progress();save()});
+
+var draft=load();
+var doneRes=null;try{doneRes=JSON.parse(localStorage.getItem(DK+'-done')||'null')}catch(e){}
+if(HAS_GAS){google.script.run.withSuccessHandler(function(c){cfg=c;if(!c.open){$('#closed').hidden=false;$('#bbar').hidden=true}}).withFailureHandler(function(){}).getConfig()}
+if(draft&&draft._go)begin();
+if(doneRes){begin();lockAll();showResult(doneRes,true)}
+
+/* ---- modal ---- */
+function modal(html){$('#sheet').innerHTML=html;$('#modal').hidden=false}
+function closeModal(){$('#modal').hidden=true}
+
+/* ---- nộp bài ---- */
+$('#submit').addEventListener('click',function(){
+  var n=progress(),left=IDS.length-n;
+  modal('<h3>'+(left?'Em còn '+left+' ý chưa làm':'Em đã làm hết '+IDS.length+' ý')+'</h3><div class="hint">'+(left?'Ý bỏ trống sẽ không được tính điểm. ':'')+'Sau khi nộp sẽ không sửa được bài.</div><div class="row"><button class="btn sec" id="mNo">Làm tiếp</button><button class="btn pri" id="mYes">Nộp bài</button></div>');
+  $('#mNo').onclick=closeModal;$('#mYes').onclick=send;
+});
+function send(){
+  modal('<div class="spin"></div><h3 style="text-align:center">Đang gửi bài…</h3><div class="hint" style="text-align:center">Giữ màn hình, đừng tắt trang.</div>');
+  var p={name:$('#ten').value,cls:$('#lop').value,dur:t0?Math.round((Date.now()-t0)/1000):0,answers:answers()};
+  if(!HAS_GAS){failed('Không chấm được bài.');return}
+  google.script.run.withSuccessHandler(function(res){
+    if(!res||res.error){failed(res&&res.error||'Máy chủ không phản hồi.');return}
+    closeModal();res.name=p.name;res.cls=p.cls;res.dur=p.dur;
+    try{localStorage.setItem(DK+'-done',JSON.stringify(res))}catch(e){}
+    lockAll();showResult(res,false);
+  }).withFailureHandler(function(e){failed('Không gửi được (mạng yếu?). '+(e&&e.message?e.message:''))}).submitResult(p);
+}
+function failed(msg){modal('<h3>Chưa nộp được bài</h3><div class="err">'+esc(msg)+'</div><div class="hint">Bài làm của em vẫn được giữ nguyên. Kiểm tra mạng rồi thử lại.</div><div class="row"><button class="btn sec" id="mNo">Đóng</button><button class="btn pri" id="mYes">Gửi lại</button></div>');$('#mNo').onclick=closeModal;$('#mYes').onclick=send}
+function lockAll(){$$('#work input,#work select').forEach(function(el){el.disabled=true});$('#bbar').hidden=true}
+
+/* ---- hiển thị kết quả ---- */
+function rc(r){return r==='Tốt'?'var(--ok)':r==='Khá'?'var(--c2)':r==='Đạt'?'var(--warn)':'var(--bad)'}
+function showResult(res,reload){
+  var C=2*Math.PI*46,col=rc(res.rank);
+  var el=$('#result');el.hidden=false;
+  el.innerHTML='<div class="rt"><div class="ring"><svg viewBox="0 0 110 110"><circle cx="55" cy="55" r="46" fill="none" stroke="var(--line)" stroke-width="11"/><circle cx="55" cy="55" r="46" fill="none" stroke="'+col+'" stroke-width="11" stroke-linecap="round" stroke-dasharray="'+(C*res.total/10)+' '+C+'"/></svg><div class="v"><div><b>'+fmt(res.total)+'</b><small>/ 10 điểm</small></div></div></div>'+
+   '<div><span class="rk" style="background:'+col+'">'+res.rank+'</span><h2>'+esc(res.name)+' – '+esc(res.cls)+'</h2><div class="i">Đúng '+res.nOk+'/'+res.n+' ý · '+(res.dur?Math.floor(res.dur/60)+' phút '+res.dur%60+' giây':'')+'</div></div></div>'+
+   '<div class="sbs">'+SECS.map(function(s,i){var v=res.per[s[0]]||0;return '<div class="sb"><span>'+(i+1)+'. '+s[1]+'</span><span class="v">'+fmt(v)+'/'+s[2]+'</span><span class="tr"><i style="width:'+(v/s[2]*100)+'%;background:var('+s[3]+')"></i></span></div>'}).join('')+'</div>'+
+   (res.code?'<div class="codebox"><div class="ct">📨 Bước cuối: gửi kết quả cho thầy/cô</div><ol><li>Bấm nút <b>Sao chép mã</b> bên dưới.</li><li>Mở Zalo, <b>dán</b> mã vào tin nhắn gửi thầy/cô.</li></ol><textarea id="myCode" readonly>'+res.code+'</textarea><button class="btn pri" id="cpCode" type="button">📋 Sao chép mã</button><div class="hint" id="cpMsg">Kéo xuống để xem đáp án và lời giải.</div></div>':'<div class="sent">✓ Đã gửi kết quả cho giáo viên lúc '+new Date(res.time).toLocaleString('vi-VN')+'.</div>');
+  if(res.code){$('#cpCode').onclick=function(){var ta=$('#myCode');function done(){$('#cpCode').textContent='✓ Đã sao chép – dán vào Zalo';$('#cpMsg').textContent='Nếu dán không được: bấm giữ vào ô mã → Chọn tất cả → Sao chép.'}
+    try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(res.code).then(done,function(){ta.focus();ta.select();try{document.execCommand('copy');done()}catch(e){}})}else{ta.focus();ta.select();document.execCommand('copy');done()}}catch(e){ta.focus();ta.select()}}}
+  if(res.bits)mark(res);
+  if(!reload)setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'start'})},50);
+}
+function mark(res){
+  var ok={};IDS.forEach(function(id,i){ok[id]=res.bits[i]===1});var fb=res.fb||{},ok2=res.optKeys||{};
+  Object.keys(BL).forEach(function(k){var s=$('#'+k);s.classList.add(ok[k]?'ok':'bad');if(!ok[k])s.insertAdjacentHTML('afterend','<span class="fix">✓ '+esc(fb[k].k)+'</span>')});
+  Object.keys(ok2).forEach(function(n){$$('input[name="'+n+'"]').forEach(function(inp){var lab=inp.closest('.opt');if(ok2[n].indexOf(+inp.value)>=0)lab.classList.add('right');else if(inp.checked)lab.classList.add('wrong')})});
+  function setQ(q,good,html){var e=$('[data-q="'+q+'"]');e.classList.add(good?'ok':'bad');var f=$('[data-fb="'+q+'"]');if(f){f.hidden=false;f.innerHTML='<span class="r">'+(good?'Chính xác!':'Chưa đúng.')+'</span> '+html}}
+  setQ('bt1',ok.bt1,fb.bt1.x);setQ('bt2',ok.bt2,'Đáp án: '+fb.bt2.k+'. '+fb.bt2.x);setQ('bt6',ok.bt6,'Đáp án B. '+fb.bt6.x);
+  var n3=0;BT3.forEach(function(b){var g=ok['bt3'+b[0]];if(g)n3++;$('[data-item="bt3'+b[0]+'"]').classList.add(g?'ok':'bad')});setQ('bt3',n3===3,'Đúng '+n3+'/3. '+fb.bt3.x);
+  var n4=0;BT4.forEach(function(r,i){var g=ok['bt4_'+i];if(g)n4++;$('[data-item="bt4_'+i+'"]').classList.add(g?'ok':'bad')});setQ('bt4',n4===7,'Đúng '+n4+'/7. '+fb.bt4.x);
+  ['bt5','bt7'].forEach(function(k){$('#'+k).classList.add(ok[k]?'ok':'bad');setQ(k,ok[k],fb[k].x)});
+  MCQ.forEach(function(_,i){var q='q'+(i+1);setQ(q,ok[q],'Đáp án <b>'+fb[q].k+'</b>. '+fb[q].x)});
+  TF.forEach(function(_,i){var q='tf'+(i+1),e=$('[data-item="'+q+'"]');e.classList.add(ok[q]?'ok':'bad');e.querySelector('.fbx').innerHTML='<span class="fix'+(ok[q]?'':' x')+'" style="margin:0">'+(ok[q]?'✓':'✗')+' Đáp án: '+(fb[q].k==='Đ'?'Đúng':'Sai')+' — '+fb[q].x+'</span>'});
+  MA.forEach(function(_,i){var q='m'+(i+1),e=$('[data-item="'+q+'"]');e.classList.add(ok[q]?'ok':'bad');if(!ok[q])e.querySelector('.tx').insertAdjacentHTML('beforeend',' <span class="fix">→ '+fb[q].k+'</span>')});
+}
+})();
+</script>
+</body>
+</html>
